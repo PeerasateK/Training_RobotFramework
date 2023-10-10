@@ -3,7 +3,6 @@ Library         SeleniumLibrary    timeout=10s
 Library         OperatingSystem
 Library         String
 Library         Collections
-Resource        ../Utilities/Pages/Common/Variables.resource
 Resource        ../Utilities/Pages/HomePage/Vars_Keywords.resource
 Resource        ../Utilities/Pages/ProductPage/Vars_Keywords.resource
 Resource        ../Utilities/Pages/CartPage/Vars_Keywords.resource
@@ -12,7 +11,6 @@ Resource        ../Utilities/Keywords/Common/Common.resource
 Resource        ../Utilities/Keywords/Test step keyword/Keywords.resource
 Variables       ../Utilities/Test_Data/Data_files_${Language}.yaml
 Variables       ../Utilities/Test_Data/prefs.yaml
-
 
 
 *** Variables ***
@@ -25,3 +23,9 @@ ${CHROME_OPTIONS}           ;add_experimental_option("detach", ${True});add_argu
 ${DISABLE_LOCATION}         ;add_experimental_option("prefs",${prefsyaml})
 
 ${Language}                 en
+${Data_Files}               ${EMPTY}
+
+# Page
+${Page_Loader_ele}          //*[@class='pageLoader']
+${Page_Loader_Dnone_ele}    //*[@class='pageLoader d-none']
+${Ads_Close_btn}            //*[starts-with(@id,'close-button-')]

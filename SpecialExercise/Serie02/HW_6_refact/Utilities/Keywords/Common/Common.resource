@@ -4,8 +4,8 @@ Resource    ../../../Configs/Common.resource
 
 *** Keywords ***
 Load Data Files YAML
-    ${data_files}    Set Variable    ${${TEST NAME}}
-    Set Test Variable    ${data_files}    
+    ${Data_Files}    Set Variable    ${${TEST NAME}}
+    Set Test Variable    ${Data_Files}
 
 Input Special Text
     [Arguments]    ${locator}    ${text}    ${clear}=${True}

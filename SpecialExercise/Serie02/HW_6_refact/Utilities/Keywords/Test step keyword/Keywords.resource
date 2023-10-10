@@ -4,7 +4,7 @@ Resource    ../../../Configs/Common.resource
 
 *** Keywords ***
 Add all products to cart
-    FOR    ${input}    IN    @{data_files.input_data.input_products}
+    FOR    ${input}    IN    @{Data_Files.input_data.input_products}
         Go to products page    ${input.brand}
         Add ${input.products} to cart
     END
@@ -43,7 +43,7 @@ View products in cart
     Check Loading Done
 
 Verify that products in shopping cart is correct
-    [Arguments]    ${products_in_cart}=${data_files.expected_data.products_in_cart}
+    [Arguments]    ${products_in_cart}=${Data_Files.expected_data.products_in_cart}
     # Capture Element Screenshot    ${Shopping_Bag_ele}    ${OUTPUT DIR}/testData/shopping_cart.png
     ${Verify_checkout_balance}    Format String    ${Bag_Grand_Total_ele}    balance=${products_in_cart.checkout_balance}
     FOR  ${product}  IN  @{products_in_cart.products}
@@ -58,7 +58,7 @@ Checkout products in cart
     Check Loading Done
 
 Add delivery address
-    [Arguments]    ${addressData}=${data_files.input_data.input_payment.addressInfo}
+    [Arguments]    ${addressData}=${Data_Files.input_data.input_payment.addressInfo}
     Click Element    ${New_Shipping_Address_btn}
     Wait Until Element Is Visble and Click    ${Add_Shipping_Address_btn}
     Wait Until Element Is Visble and Fill Input Text    ${First_Name_inp}    ${addressData.firstName}
@@ -82,7 +82,7 @@ Select shipping method : home
     Wait Until Element Is Visble and Click    ${Shipping_Method_1_1_rad}
 
 Add Credit Card
-    [Arguments]    ${creditCardData}=${data_files.input_data.input_payment.CreditInfo}
+    [Arguments]    ${creditCardData}=${Data_Files.input_data.input_payment.CreditInfo}
     Scroll Element Into View Center    ${Credit_Payment_rad}
     Click Element    ${Credit_Payment_rad}
     Input Text    ${Card_Fullname_inp}    ${creditCardData.fullName}
