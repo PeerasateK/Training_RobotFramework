@@ -1,0 +1,3 @@
+{"level":30,"time":"2023-09-27T17:22:25.453Z","pid":60080,"hostname":"AR8040667194N1.local","msg":"Listening on 49936"}
+{"level":30,"time":"2023-09-27T17:22:25.539Z","pid":60080,"hostname":"AR8040667194N1.local","msg":"Start of node method getBrowserCatalog"}
+{"level":30,"time":"2023-09-27T17:22:25.540Z","pid":60080,"hostname":"AR8040667194N1.local","msg":"End of node method getBrowserCatalog"}

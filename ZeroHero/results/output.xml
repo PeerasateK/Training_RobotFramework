@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.11.5 on darwin)" generated="20230926 12:02:34.945" rpa="false" schemaversion="4">
+<suite id="s1" name="ZeroHero" source="/Users/a667194/Workspace/Knowledge/Automated-Test/ZeroHero">
+<suite id="s1-s1" name="Serie04" source="/Users/a667194/Workspace/Knowledge/Automated-Test/ZeroHero/Serie04">
+<suite id="s1-s1-s1" name="Hw 18" source="/Users/a667194/Workspace/Knowledge/Automated-Test/ZeroHero/Serie04/Hw_18">
+<suite id="s1-s1-s1-s1" name="Poc Api" source="/Users/a667194/Workspace/Knowledge/Automated-Test/ZeroHero/Serie04/Hw_18/poc_api.robot">
+<test id="s1-s1-s1-s1-t1" name="Get Pet By ID" line="6">
+<kw name="GET" library="RequestsLibrary">
+<var>${response}</var>
+<arg>https://petstore3.swagger.io/api/v3/pet/55</arg>
+<arg>expected_status=any</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20230926 12:02:36.213" level="INFO">GET Request : url=https://petstore3.swagger.io/api/v3/pet/55 
+ path_url=/api/v3/pet/55 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230926 12:02:36.214" level="INFO">GET Response : url=https://petstore3.swagger.io/api/v3/pet/55 
+ status=404, reason=Not Found 
+ headers={'Date': 'Tue, 26 Sep 2023 05:02:36 GMT', 'Content-Type': 'application/json', 'Content-Length': '13', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Access-Control-Expose-Headers': 'Content-Disposition', 'Server': 'Jetty(9.4.9.v20180320)'} 
+ body=Pet not found 
+ </msg>
+<msg timestamp="20230926 12:02:36.214" level="INFO">${response} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20230926 12:02:35.032" endtime="20230926 12:02:36.214"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230926 12:02:36.216" level="INFO">&lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20230926 12:02:36.215" endtime="20230926 12:02:36.216"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>404</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230926 12:02:36.216" endtime="20230926 12:02:36.217"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>Not Found</arg>
+<arg>${response.reason}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230926 12:02:36.217" endtime="20230926 12:02:36.218"/>
+</kw>
+<status status="PASS" starttime="20230926 12:02:35.031" endtime="20230926 12:02:36.218"/>
+</test>
+<test id="s1-s1-s1-s1-t2" name="Create Pet" line="12">
+<kw name="Evaluate" library="BuiltIn">
+<var>${body}</var>
+<arg>json.loads('{"id":55,"name":"aaa","category":{"id":1,"name":"Ants"},"photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"}')</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230926 12:02:36.220" level="INFO">${body} = {'id': 55, 'name': 'aaa', 'category': {'id': 1, 'name': 'Ants'}, 'photoUrls': ['string'], 'tags': [{'id': 0, 'name': 'string'}], 'status': 'available'}</msg>
+<status status="PASS" starttime="20230926 12:02:36.219" endtime="20230926 12:02:36.220"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>https://petstore3.swagger.io/api/v3/pet</arg>
+<arg>json=${body}</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20230926 12:02:37.392" level="INFO">POST Request : url=https://petstore3.swagger.io/api/v3/pet 
+ path_url=/api/v3/pet 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '151', 'Content-Type': 'application/json'} 
+ body=b'{"id": 55, "name": "aaa", "category": {"id": 1, "name": "Ants"}, "photoUrls": ["string"], "tags": [{"id": 0, "name": "string"}], "status": "available"}' 
+ </msg>
+<msg timestamp="20230926 12:02:37.393" level="INFO">POST Response : url=https://petstore3.swagger.io/api/v3/pet 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 26 Sep 2023 05:02:37 GMT', 'Content-Type': 'application/json', 'Content-Length': '134', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Access-Control-Expose-Headers': 'Content-Disposition', 'Server': 'Jetty(9.4.9.v20180320)'} 
+ body={"id":55,"category":{"id":1,"name":"Ants"},"name":"aaa","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"} 
+ </msg>
+<msg timestamp="20230926 12:02:37.393" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230926 12:02:36.220" endtime="20230926 12:02:37.393"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230926 12:02:37.394" endtime="20230926 12:02:37.394"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>OK</arg>
+<arg>${response.reason}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230926 12:02:37.395" endtime="20230926 12:02:37.396"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${expectedData}</var>
+<arg>json.loads('{"id":55,"name":"aaa","category":{"id":1,"name":"Ants"},"photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"}')</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230926 12:02:37.397" level="INFO">${expectedData} = {'id': 55, 'name': 'aaa', 'category': {'id': 1, 'name': 'Ants'}, 'photoUrls': ['string'], 'tags': [{'id': 0, 'name': 'string'}], 'status': 'available'}</msg>
+<status status="PASS" starttime="20230926 12:02:37.396" endtime="20230926 12:02:37.397"/>
+</kw>
+<status status="PASS" starttime="20230926 12:02:36.219" endtime="20230926 12:02:37.397"/>
+</test>
+<test id="s1-s1-s1-s1-t3" name="Edit Pet" line="22">
+<kw name="Evaluate" library="BuiltIn">
+<var>${body}</var>
+<arg>json.loads('{"id":55,"name":"aaa","category":{"id":1,"name":"Slot"},"photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"}')</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230926 12:02:37.399" level="INFO">${body} = {'id': 55, 'name': 'aaa', 'category': {'id': 1, 'name': 'Slot'}, 'photoUrls': ['string'], 'tags': [{'id': 0, 'name': 'string'}], 'status': 'available'}</msg>
+<status status="PASS" starttime="20230926 12:02:37.399" endtime="20230926 12:02:37.399"/>
+</kw>
+<kw name="PUT" library="RequestsLibrary">
+<var>${response}</var>
+<arg>https://petstore3.swagger.io/api/v3/pet</arg>
+<arg>json=${body}</arg>
+<doc>Sends a PUT request.</doc>
+<msg timestamp="20230926 12:02:38.577" level="INFO">PUT Request : url=https://petstore3.swagger.io/api/v3/pet 
+ path_url=/api/v3/pet 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '151', 'Content-Type': 'application/json'} 
+ body=b'{"id": 55, "name": "aaa", "category": {"id": 1, "name": "Slot"}, "photoUrls": ["string"], "tags": [{"id": 0, "name": "string"}], "status": "available"}' 
+ </msg>
+<msg timestamp="20230926 12:02:38.578" level="INFO">PUT Response : url=https://petstore3.swagger.io/api/v3/pet 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 26 Sep 2023 05:02:38 GMT', 'Content-Type': 'application/json', 'Content-Length': '134', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Access-Control-Expose-Headers': 'Content-Disposition', 'Server': 'Jetty(9.4.9.v20180320)'} 
+ body={"id":55,"category":{"id":1,"name":"Slot"},"name":"aaa","photoUrls":["string"],"tags":[{"id":0,"name":"string"}],"status":"available"} 
+ </msg>
+<msg timestamp="20230926 12:02:38.580" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230926 12:02:37.400" endtime="20230926 12:02:38.580"/>
+</kw>
+<status status="PASS" starttime="20230926 12:02:37.398" endtime="20230926 12:02:38.581"/>
+</test>
+<test id="s1-s1-s1-s1-t4" name="Remove Pet" line="27">
+<kw name="DELETE" library="RequestsLibrary">
+<var>${response}</var>
+<arg>https://petstore3.swagger.io/api/v3/pet/55</arg>
+<doc>Sends a DELETE request.</doc>
+<msg timestamp="20230926 12:02:39.760" level="INFO">DELETE Request : url=https://petstore3.swagger.io/api/v3/pet/55 
+ path_url=/api/v3/pet/55 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20230926 12:02:39.760" level="INFO">DELETE Response : url=https://petstore3.swagger.io/api/v3/pet/55 
+ status=200, reason=OK 
+ headers={'Date': 'Tue, 26 Sep 2023 05:02:39 GMT', 'Content-Type': 'application/json', 'Content-Length': '11', 'Connection': 'keep-alive', 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, DELETE, PUT', 'Access-Control-Allow-Headers': 'Content-Type, api_key, Authorization', 'Access-Control-Expose-Headers': 'Content-Disposition', 'Server': 'Jetty(9.4.9.v20180320)'} 
+ body=Pet deleted 
+ </msg>
+<msg timestamp="20230926 12:02:39.760" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230926 12:02:38.582" endtime="20230926 12:02:39.760"/>
+</kw>
+<kw name="Log" library="BuiltIn">
+<arg>${response}</arg>
+<doc>Logs the given message with the given level.</doc>
+<msg timestamp="20230926 12:02:39.761" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230926 12:02:39.761" endtime="20230926 12:02:39.761"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${response}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="PASS" starttime="20230926 12:02:39.762" endtime="20230926 12:02:39.762"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>OK</arg>
+<arg>${response.reason}</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230926 12:02:39.762" endtime="20230926 12:02:39.763"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.content}</arg>
+<arg>Pet deleted</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230926 12:02:39.763" level="INFO">Argument types are:
+&lt;class 'bytes'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230926 12:02:39.763" endtime="20230926 12:02:39.763"/>
+</kw>
+<status status="PASS" starttime="20230926 12:02:38.581" endtime="20230926 12:02:39.764"/>
+</test>
+<status status="PASS" starttime="20230926 12:02:34.961" endtime="20230926 12:02:39.764"/>
+</suite>
+<status status="PASS" starttime="20230926 12:02:34.960" endtime="20230926 12:02:39.765"/>
+</suite>
+<status status="PASS" starttime="20230926 12:02:34.959" endtime="20230926 12:02:39.766"/>
+</suite>
+<status status="PASS" starttime="20230926 12:02:34.948" endtime="20230926 12:02:39.766"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="ZeroHero">ZeroHero</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s1" name="Serie04">ZeroHero.Serie04</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s1-s1" name="Hw 18">ZeroHero.Serie04.Hw 18</stat>
+<stat pass="4" fail="0" skip="0" id="s1-s1-s1-s1" name="Poc Api">ZeroHero.Serie04.Hw 18.Poc Api</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

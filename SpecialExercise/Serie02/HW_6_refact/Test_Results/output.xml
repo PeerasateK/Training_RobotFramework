@@ -1,0 +1,1396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.11.5 on darwin)" generated="20231010 11:17:26.375" rpa="false" schemaversion="4">
+<suite id="s1" name="Training RobotFramework" source="/Users/a667194/Workspace/Knowledge/Automated-Test/Training_RobotFramework">
+<suite id="s1-s1" name="SpecialExercise" source="/Users/a667194/Workspace/Knowledge/Automated-Test/Training_RobotFramework/SpecialExercise">
+<suite id="s1-s1-s1" name="Serie02" source="/Users/a667194/Workspace/Knowledge/Automated-Test/Training_RobotFramework/SpecialExercise/Serie02">
+<suite id="s1-s1-s1-s1" name="HW 6 refact" source="/Users/a667194/Workspace/Knowledge/Automated-Test/Training_RobotFramework/SpecialExercise/Serie02/HW_6_refact">
+<suite id="s1-s1-s1-s1-s1" name="Test Suits" source="/Users/a667194/Workspace/Knowledge/Automated-Test/Training_RobotFramework/SpecialExercise/Serie02/HW_6_refact/Test_Suits">
+<suite id="s1-s1-s1-s1-s1-s1" name="Poc Central" source="/Users/a667194/Workspace/Knowledge/Automated-Test/Training_RobotFramework/SpecialExercise/Serie02/HW_6_refact/Test_Suits/poc_central.robot">
+<kw name="Go to CENTRAL to Shopping" library="Keywords" type="SETUP">
+<kw name="Get Environment Variable" library="OperatingSystem">
+<var>${HOME}</var>
+<arg>HOME</arg>
+<doc>Returns the value of an environment variable with the given name.</doc>
+<msg timestamp="20231010 11:17:26.559" level="INFO">${HOME} = /Users/a667194</msg>
+<status status="PASS" starttime="20231010 11:17:26.559" endtime="20231010 11:17:26.560"/>
+</kw>
+<kw name="Set Suite Variable" library="BuiltIn">
+<arg>${HOME}</arg>
+<doc>Makes a variable available everywhere within the scope of the current suite.</doc>
+<msg timestamp="20231010 11:17:26.560" level="INFO">${HOME} = /Users/a667194</msg>
+<status status="PASS" starttime="20231010 11:17:26.560" endtime="20231010 11:17:26.560"/>
+</kw>
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>${URL}</arg>
+<arg>${BROWSER}</arg>
+<arg>options=binary_location="${HOME}${CHROME_PATH}"${CHROME_OPTIONS}${DISABLE_LOCATION}</arg>
+<arg>executable_path=${HOME}${CHROME_DRIVER_PATH}</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20231010 11:17:26.560" level="INFO">Opening browser 'Chrome' to base url 'https://www.central.co.th/en/'.</msg>
+<status status="PASS" starttime="20231010 11:17:26.560" endtime="20231010 11:17:29.718"/>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20231010 11:17:29.719" endtime="20231010 11:17:30.193"/>
+</kw>
+<kw name="Run Keyword And Ignore Error" library="BuiltIn">
+<arg>Click Element</arg>
+<arg>${Ads_Close_btn}</arg>
+<doc>Runs the given keyword with the given arguments and ignores possible error.</doc>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Ads_Close_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:30.194" level="INFO">Clicking element '//*[starts-with(@id,'close-button-')]'.</msg>
+<status status="PASS" starttime="20231010 11:17:30.193" endtime="20231010 11:17:30.265"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:30.193" endtime="20231010 11:17:30.266"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:26.559" endtime="20231010 11:17:30.266"/>
+</kw>
+<test id="s1-s1-s1-s1-s1-s1-t1" name="TC-01_Shopping" line="10">
+<kw name="Load Data Files YAML" library="Common" type="SETUP">
+<kw name="Set Variable" library="BuiltIn">
+<var>${data_files}</var>
+<arg>${${TEST NAME}}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20231010 11:17:30.268" level="INFO">${data_files} = {'input_data': {'input_products': [{'brand': {'name': 'COACH', 'logoBrand': 'coach'}, 'products': [{'id': 'MKP1570508', 'method': '', 'size': '', 'quantity': 1}]}, {'brand': {'name': 'TOMMY HILFIGER',...</msg>
+<status status="PASS" starttime="20231010 11:17:30.268" endtime="20231010 11:17:30.268"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${data_files}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20231010 11:17:30.269" level="INFO">${data_files} = {'input_data': {'input_products': [{'brand': {'name': 'COACH', 'logoBrand': 'coach'}, 'products': [{'id': 'MKP1570508', 'method': '', 'size': '', 'quantity': 1}]}, {'brand': {'name': 'TOMMY HILFIGER',...</msg>
+<status status="PASS" starttime="20231010 11:17:30.269" endtime="20231010 11:17:30.269"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:30.267" endtime="20231010 11:17:30.269"/>
+</kw>
+<kw name="Add all products to cart" library="Keywords">
+<for flavor="IN">
+<var>${input}</var>
+<value>@{data_files.input_data.input_products}</value>
+<iter>
+<var name="${input}">{'brand': {'name': 'COACH', 'logoBrand': 'coach'}, 'products': [{'id': 'MKP1570508', 'method': '', 'size': '', 'quantity': 1}]}</var>
+<kw name="Go to products page" library="Keywords">
+<arg>${input.brand}</arg>
+<kw name="Format String" library="String">
+<var>${Brand_btn}</var>
+<arg>${Brand_btn}</arg>
+<arg>BRAND=${brand.name}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:30.272" level="INFO">${Brand_btn} = //*[@id='แบรนด์ทั้งหมด' or @id='ALL BRANDS']//*[.='COACH']</msg>
+<status status="PASS" starttime="20231010 11:17:30.271" endtime="20231010 11:17:30.272"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Logo_brand_ele}</var>
+<arg>${Logo_brand_ele}</arg>
+<arg>BRAND=${brand.logoBrand}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:30.272" level="INFO">${Logo_brand_ele} = //*[@class="cmp-image__image" and contains(@src,'coach')]</msg>
+<status status="PASS" starttime="20231010 11:17:30.272" endtime="20231010 11:17:30.272"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Mouse Over" library="Common">
+<arg>${Nav_Brand_btn}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:30.273" endtime="20231010 11:17:30.318"/>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<msg timestamp="20231010 11:17:30.319" level="INFO">Simulating Mouse Over on element '//*[contains(@href,'/shopbybrand')]'.</msg>
+<status status="PASS" starttime="20231010 11:17:30.318" endtime="20231010 11:17:30.930"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:30.273" endtime="20231010 11:17:30.930"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Click" library="Common">
+<arg>${Brand_btn}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:30.932" endtime="20231010 11:17:30.959"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:30.960" level="INFO">Clicking element '//*[@id='แบรนด์ทั้งหมด' or @id='ALL BRANDS']//*[.='COACH']'.</msg>
+<status status="PASS" starttime="20231010 11:17:30.959" endtime="20231010 11:17:31.193"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:30.931" endtime="20231010 11:17:31.193"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${Logo_brand_ele}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:31.193" endtime="20231010 11:17:31.832"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:30.270" endtime="20231010 11:17:31.832"/>
+</kw>
+<kw name="Add ${input.products} to cart" library="Keywords" sourcename="Add ${products} to cart">
+<for flavor="IN">
+<var>${product}</var>
+<value>@{products}</value>
+<iter>
+<var name="${product}">{'id': 'MKP1570508', 'method': '', 'size': '', 'quantity': 1}</var>
+<for flavor="IN RANGE">
+<var>${index}</var>
+<value>${product.quantity}</value>
+<iter>
+<var name="${index}">0</var>
+<kw name="Format String" library="String">
+<var>${local_Card_ele}</var>
+<arg>${Card_ele}</arg>
+<arg>ProductID=${product.id}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:31.835" level="INFO">${local_Card_ele} = //*[contains(@data-testid,'MKP1570508')]//ancestor::*[contains(@class,'productCard')]</msg>
+<status status="PASS" starttime="20231010 11:17:31.834" endtime="20231010 11:17:31.835"/>
+</kw>
+<kw name="Scroll Element Into View Center" library="Common">
+<arg>${local_Card_ele}</arg>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>window.document.evaluate("${locator}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20231010 11:17:31.836" level="INFO">Executing JavaScript:
+window.document.evaluate("//*[contains(@data-testid,'MKP1570508')]//ancestor::*[contains(@class,'productCard')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});
+Without any arguments.</msg>
+<status status="PASS" starttime="20231010 11:17:31.835" endtime="20231010 11:17:31.852"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:32.855" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:31.852" endtime="20231010 11:17:32.855"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:31.835" endtime="20231010 11:17:32.855"/>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<arg>${local_Card_ele}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<msg timestamp="20231010 11:17:32.857" level="INFO">Simulating Mouse Over on element '//*[contains(@data-testid,'MKP1570508')]//ancestor::*[contains(@class,'productCard')]'.</msg>
+<status status="PASS" starttime="20231010 11:17:32.856" endtime="20231010 11:17:33.129"/>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Add to Cart ${product['method']}</arg>
+<arg>${product.id}</arg>
+<arg>${product.size}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Add to Cart" library="Vars_Keywords">
+<arg>${product.id}</arg>
+<arg>${product.size}</arg>
+<kw name="Format String" library="String">
+<var>${Add_To_Cart_btn}</var>
+<arg>${Add_To_Cart_btn}</arg>
+<arg>ProductID=${ID}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:33.135" level="INFO">${Add_To_Cart_btn} = //button[contains(@data-testid,'MKP1570508')]</msg>
+<status status="PASS" starttime="20231010 11:17:33.135" endtime="20231010 11:17:33.135"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Click" library="Common">
+<arg>${Add_To_Cart_btn}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:33.136" endtime="20231010 11:17:33.149"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:33.149" level="INFO">Clicking element '//button[contains(@data-testid,'MKP1570508')]'.</msg>
+<status status="PASS" starttime="20231010 11:17:33.149" endtime="20231010 11:17:33.204"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:33.135" endtime="20231010 11:17:33.204"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:33.134" endtime="20231010 11:17:33.204"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:33.129" endtime="20231010 11:17:33.204"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${expectedProductQty}</arg>
+<arg>${expectedProductQty+1}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20231010 11:17:33.205" level="INFO">${expectedProductQty} = 1</msg>
+<status status="PASS" starttime="20231010 11:17:33.205" endtime="20231010 11:17:33.205"/>
+</kw>
+<kw name="Wait Until Element Contains" library="SeleniumLibrary">
+<arg>${Cart_Count_ele}</arg>
+<arg>${expectedProductQty}</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" starttime="20231010 11:17:33.205" endtime="20231010 11:17:33.869"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:31.834" endtime="20231010 11:17:33.870"/>
+</iter>
+<status status="PASS" starttime="20231010 11:17:31.834" endtime="20231010 11:17:33.870"/>
+</for>
+<status status="PASS" starttime="20231010 11:17:31.833" endtime="20231010 11:17:33.870"/>
+</iter>
+<status status="PASS" starttime="20231010 11:17:31.833" endtime="20231010 11:17:33.870"/>
+</for>
+<status status="PASS" starttime="20231010 11:17:31.833" endtime="20231010 11:17:33.870"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:30.270" endtime="20231010 11:17:33.870"/>
+</iter>
+<iter>
+<var name="${input}">{'brand': {'name': 'TOMMY HILFIGER', 'logoBrand': 'tommy-hilfiger'}, 'products': [{'id': 'MKP1573640', 'method': 'Select Size', 'size': '37 EU', 'quantity': 1}]}</var>
+<kw name="Go to products page" library="Keywords">
+<arg>${input.brand}</arg>
+<kw name="Format String" library="String">
+<var>${Brand_btn}</var>
+<arg>${Brand_btn}</arg>
+<arg>BRAND=${brand.name}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:33.871" level="INFO">${Brand_btn} = //*[@id='แบรนด์ทั้งหมด' or @id='ALL BRANDS']//*[.='TOMMY HILFIGER']</msg>
+<status status="PASS" starttime="20231010 11:17:33.871" endtime="20231010 11:17:33.871"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Logo_brand_ele}</var>
+<arg>${Logo_brand_ele}</arg>
+<arg>BRAND=${brand.logoBrand}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:33.872" level="INFO">${Logo_brand_ele} = //*[@class="cmp-image__image" and contains(@src,'tommy-hilfiger')]</msg>
+<status status="PASS" starttime="20231010 11:17:33.871" endtime="20231010 11:17:33.872"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Mouse Over" library="Common">
+<arg>${Nav_Brand_btn}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:33.872" endtime="20231010 11:17:33.882"/>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<msg timestamp="20231010 11:17:33.883" level="INFO">Simulating Mouse Over on element '//*[contains(@href,'/shopbybrand')]'.</msg>
+<status status="PASS" starttime="20231010 11:17:33.883" endtime="20231010 11:17:34.157"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:33.872" endtime="20231010 11:17:34.157"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Click" library="Common">
+<arg>${Brand_btn}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:34.157" endtime="20231010 11:17:34.171"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:34.171" level="INFO">Clicking element '//*[@id='แบรนด์ทั้งหมด' or @id='ALL BRANDS']//*[.='TOMMY HILFIGER']'.</msg>
+<status status="PASS" starttime="20231010 11:17:34.171" endtime="20231010 11:17:34.677"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:34.157" endtime="20231010 11:17:34.678"/>
+</kw>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${Logo_brand_ele}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:34.678" endtime="20231010 11:17:34.781"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:33.870" endtime="20231010 11:17:34.782"/>
+</kw>
+<kw name="Add ${input.products} to cart" library="Keywords" sourcename="Add ${products} to cart">
+<for flavor="IN">
+<var>${product}</var>
+<value>@{products}</value>
+<iter>
+<var name="${product}">{'id': 'MKP1573640', 'method': 'Select Size', 'size': '37 EU', 'quantity': 1}</var>
+<for flavor="IN RANGE">
+<var>${index}</var>
+<value>${product.quantity}</value>
+<iter>
+<var name="${index}">0</var>
+<kw name="Format String" library="String">
+<var>${local_Card_ele}</var>
+<arg>${Card_ele}</arg>
+<arg>ProductID=${product.id}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:34.784" level="INFO">${local_Card_ele} = //*[contains(@data-testid,'MKP1573640')]//ancestor::*[contains(@class,'productCard')]</msg>
+<status status="PASS" starttime="20231010 11:17:34.783" endtime="20231010 11:17:34.784"/>
+</kw>
+<kw name="Scroll Element Into View Center" library="Common">
+<arg>${local_Card_ele}</arg>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>window.document.evaluate("${locator}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20231010 11:17:34.785" level="INFO">Executing JavaScript:
+window.document.evaluate("//*[contains(@data-testid,'MKP1573640')]//ancestor::*[contains(@class,'productCard')]", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});
+Without any arguments.</msg>
+<status status="PASS" starttime="20231010 11:17:34.784" endtime="20231010 11:17:34.823"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:35.825" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:34.824" endtime="20231010 11:17:35.826"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:34.784" endtime="20231010 11:17:35.826"/>
+</kw>
+<kw name="Mouse Over" library="SeleniumLibrary">
+<arg>${local_Card_ele}</arg>
+<doc>Simulates hovering the mouse over the element ``locator``.</doc>
+<msg timestamp="20231010 11:17:35.827" level="INFO">Simulating Mouse Over on element '//*[contains(@data-testid,'MKP1573640')]//ancestor::*[contains(@class,'productCard')]'.</msg>
+<status status="PASS" starttime="20231010 11:17:35.827" endtime="20231010 11:17:36.103"/>
+</kw>
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Click Add to Cart ${product['method']}</arg>
+<arg>${product.id}</arg>
+<arg>${product.size}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Click Add to Cart Select Size" library="Vars_Keywords">
+<arg>${product.id}</arg>
+<arg>${product.size}</arg>
+<kw name="Format String" library="String">
+<var>${Add_To_Cart_Select_Size_btn}</var>
+<arg>${Add_To_Cart_Select_Size_btn}</arg>
+<arg>ProductID=${ID}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:36.108" level="INFO">${Add_To_Cart_Select_Size_btn} = //*[contains(@data-testid,'MKP1573640')]//following-sibling::*[contains(@class,'optionLayout')]//*[@class='quickBuy']</msg>
+<status status="PASS" starttime="20231010 11:17:36.107" endtime="20231010 11:17:36.108"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Size_btn}</var>
+<arg>${Size_btn}</arg>
+<arg>SIZE=${Size}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:36.109" level="INFO">${Size_btn} = //div[@class='sliderItem productCard active']//li[@data-value='37 EU']</msg>
+<status status="PASS" starttime="20231010 11:17:36.108" endtime="20231010 11:17:36.109"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Add_To_Cart_Size_btn}</var>
+<arg>${Add_To_Cart_Size_btn}</arg>
+<arg>ProductID=${ID}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:36.110" level="INFO">${Add_To_Cart_Size_btn} = //*[@data-testid='btn-addCart-searchResultMKP1573640']</msg>
+<status status="PASS" starttime="20231010 11:17:36.109" endtime="20231010 11:17:36.110"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Click" library="Common">
+<arg>${Add_To_Cart_Select_Size_btn}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:36.111" endtime="20231010 11:17:36.124"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:36.124" level="INFO">Clicking element '//*[contains(@data-testid,'MKP1573640')]//following-sibling::*[contains(@class,'optionLayout')]//*[@class='quickBuy']'.</msg>
+<status status="PASS" starttime="20231010 11:17:36.124" endtime="20231010 11:17:36.179"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:36.110" endtime="20231010 11:17:36.179"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>0.5s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:36.680" level="INFO">Slept 500 milliseconds</msg>
+<status status="PASS" starttime="20231010 11:17:36.179" endtime="20231010 11:17:36.681"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Size_Arrow_Down_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:36.682" level="INFO">Clicking element '//div[@class='sliderItem productCard active']//*[contains(@class,'arrow-down')]'.</msg>
+<status status="PASS" starttime="20231010 11:17:36.681" endtime="20231010 11:17:36.734"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Size_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:36.735" level="INFO">Clicking element '//div[@class='sliderItem productCard active']//li[@data-value='37 EU']'.</msg>
+<status status="PASS" starttime="20231010 11:17:36.734" endtime="20231010 11:17:36.784"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Add_To_Cart_Size_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:36.785" level="INFO">Clicking element '//*[@data-testid='btn-addCart-searchResultMKP1573640']'.</msg>
+<status status="PASS" starttime="20231010 11:17:36.785" endtime="20231010 11:17:36.842"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:36.106" endtime="20231010 11:17:36.843"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:36.103" endtime="20231010 11:17:36.843"/>
+</kw>
+<kw name="Set Test Variable" library="BuiltIn">
+<arg>${expectedProductQty}</arg>
+<arg>${expectedProductQty+1}</arg>
+<doc>Makes a variable available everywhere within the scope of the current test.</doc>
+<msg timestamp="20231010 11:17:36.843" level="INFO">${expectedProductQty} = 2</msg>
+<status status="PASS" starttime="20231010 11:17:36.843" endtime="20231010 11:17:36.843"/>
+</kw>
+<kw name="Wait Until Element Contains" library="SeleniumLibrary">
+<arg>${Cart_Count_ele}</arg>
+<arg>${expectedProductQty}</arg>
+<doc>Waits until the element ``locator`` contains ``text``.</doc>
+<status status="PASS" starttime="20231010 11:17:36.844" endtime="20231010 11:17:37.940"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:34.783" endtime="20231010 11:17:37.940"/>
+</iter>
+<status status="PASS" starttime="20231010 11:17:34.782" endtime="20231010 11:17:37.940"/>
+</for>
+<status status="PASS" starttime="20231010 11:17:34.782" endtime="20231010 11:17:37.940"/>
+</iter>
+<status status="PASS" starttime="20231010 11:17:34.782" endtime="20231010 11:17:37.940"/>
+</for>
+<status status="PASS" starttime="20231010 11:17:34.782" endtime="20231010 11:17:37.941"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:33.870" endtime="20231010 11:17:37.941"/>
+</iter>
+<status status="PASS" starttime="20231010 11:17:30.269" endtime="20231010 11:17:37.941"/>
+</for>
+<status status="PASS" starttime="20231010 11:17:30.269" endtime="20231010 11:17:37.941"/>
+</kw>
+<kw name="View products in cart" library="Keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${View_Cart_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:37.941" level="INFO">Clicking element '//*[@data-testid='btn-viewCart-bag']'.</msg>
+<status status="PASS" starttime="20231010 11:17:37.941" endtime="20231010 11:17:38.014"/>
+</kw>
+<kw name="Check Loading Done" library="Common">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:38.014" endtime="20231010 11:17:38.025"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_Dnone_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:38.025" endtime="20231010 11:17:39.987"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:40.988" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:39.987" endtime="20231010 11:17:40.988"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:38.014" endtime="20231010 11:17:40.988"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:37.941" endtime="20231010 11:17:40.988"/>
+</kw>
+<kw name="Verify that products in shopping cart is correct" library="Keywords">
+<kw name="Format String" library="String">
+<var>${Verify_checkout_balance}</var>
+<arg>${Bag_Grand_Total_ele}</arg>
+<arg>balance=${products_in_cart.checkout_balance}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:40.991" level="INFO">${Verify_checkout_balance} = //*[@id='spcBagGrandTotal' and text()='11,290']</msg>
+<status status="PASS" starttime="20231010 11:17:40.990" endtime="20231010 11:17:40.991"/>
+</kw>
+<for flavor="IN">
+<var>${product}</var>
+<value>@{products_in_cart.products}</value>
+<iter>
+<var name="${product}">{'id': 'MKP1570508', 'type': 'General', 'brand': 'COACH', 'describe': 'Phone Crossbody Blue', 'quantity': 1, 'card_price': '฿8,900'}</var>
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Verify all element product card in cart ${product.type}</arg>
+<arg>${product}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Verify all element product card in cart General" library="Vars_Keywords">
+<arg>${product}</arg>
+<kw name="Format String" library="String">
+<var>${Verify_brand}</var>
+<arg>${Verify_text_product_cart}</arg>
+<arg>ProductID=${product.id}</arg>
+<arg>text=${product.brand}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:40.999" level="INFO">${Verify_brand} = //*[@id='MKP1570508']//*[normalize-space(.)='COACH']</msg>
+<status status="PASS" starttime="20231010 11:17:40.998" endtime="20231010 11:17:40.999"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Verify_describe}</var>
+<arg>${Verify_text_product_cart}</arg>
+<arg>ProductID=${product.id}</arg>
+<arg>text=${product.describe}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:41.000" level="INFO">${Verify_describe} = //*[@id='MKP1570508']//*[normalize-space(.)='Phone Crossbody Blue']</msg>
+<status status="PASS" starttime="20231010 11:17:40.999" endtime="20231010 11:17:41.000"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Verify_quantity}</var>
+<arg>${Verify_quantity_product_cart}</arg>
+<arg>ProductID=${product.id}</arg>
+<arg>quantity=${product.quantity}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:41.001" level="INFO">${Verify_quantity} = //*[@data-testid='btn-removeCart-decrementMKP1570508']/following-sibling::span[text()='1']</msg>
+<status status="PASS" starttime="20231010 11:17:41.000" endtime="20231010 11:17:41.001"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Verify_card_price}</var>
+<arg>${Verify_text_product_cart}</arg>
+<arg>ProductID=${product.id}</arg>
+<arg>text=${product.card_price}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:41.002" level="INFO">${Verify_card_price} = //*[@id='MKP1570508']//*[normalize-space(.)='฿8,900']</msg>
+<status status="PASS" starttime="20231010 11:17:41.001" endtime="20231010 11:17:41.002"/>
+</kw>
+<kw name="Scroll Element Into View Center" library="Common">
+<arg>${Verify_brand}</arg>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>window.document.evaluate("${locator}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20231010 11:17:41.002" level="INFO">Executing JavaScript:
+window.document.evaluate("//*[@id='MKP1570508']//*[normalize-space(.)='COACH']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});
+Without any arguments.</msg>
+<status status="PASS" starttime="20231010 11:17:41.002" endtime="20231010 11:17:41.008"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:42.009" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:41.008" endtime="20231010 11:17:42.009"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:41.002" endtime="20231010 11:17:42.009"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_brand}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:42.026" level="INFO">Element '//*[@id='MKP1570508']//*[normalize-space(.)='COACH']' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:42.010" endtime="20231010 11:17:42.026"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_describe}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:42.038" level="INFO">Element '//*[@id='MKP1570508']//*[normalize-space(.)='Phone Crossbody Blue']' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:42.026" endtime="20231010 11:17:42.038"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_quantity}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:42.050" level="INFO">Element '//*[@data-testid='btn-removeCart-decrementMKP1570508']/following-sibling::span[text()='1']' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:42.038" endtime="20231010 11:17:42.050"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_card_price}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:42.062" level="INFO">Element '//*[@id='MKP1570508']//*[normalize-space(.)='฿8,900']' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:42.050" endtime="20231010 11:17:42.062"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:40.997" endtime="20231010 11:17:42.062"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:40.994" endtime="20231010 11:17:42.063"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:40.993" endtime="20231010 11:17:42.063"/>
+</iter>
+<iter>
+<var name="${product}">{'id': 'GRMKPPR000077948', 'type': 'with size', 'brand': 'TOMMY HILFIGER', 'describe': 'Women TJW WOVEN POOL SLIDE Black', 'size': '37 EU', 'quantity': 1, 'card_price': '฿2,390'}</var>
+<kw name="Run Keyword" library="BuiltIn">
+<arg>Verify all element product card in cart ${product.type}</arg>
+<arg>${product}</arg>
+<doc>Executes the given keyword with the given arguments.</doc>
+<kw name="Verify all element product card in cart with size" library="Vars_Keywords">
+<arg>${product}</arg>
+<kw name="Format String" library="String">
+<var>${Verify_brand}</var>
+<arg>${Verify_text_product_cart}</arg>
+<arg>ProductID=${product.id}</arg>
+<arg>text=${product.brand}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:42.066" level="INFO">${Verify_brand} = //*[@id='GRMKPPR000077948']//*[normalize-space(.)='TOMMY HILFIGER']</msg>
+<status status="PASS" starttime="20231010 11:17:42.066" endtime="20231010 11:17:42.067"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Verify_describe}</var>
+<arg>${Verify_text_product_cart}</arg>
+<arg>ProductID=${product.id}</arg>
+<arg>text=${product.describe}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:42.067" level="INFO">${Verify_describe} = //*[@id='GRMKPPR000077948']//*[normalize-space(.)='Women TJW WOVEN POOL SLIDE Black']</msg>
+<status status="PASS" starttime="20231010 11:17:42.067" endtime="20231010 11:17:42.067"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Verify_size}</var>
+<arg>${Verify_size_product_cart}</arg>
+<arg>ProductID=${product.id}</arg>
+<arg>size=${product.size}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:42.068" level="INFO">${Verify_size} = //*[@id='GRMKPPR000077948']//*[contains(text(),'37 EU')]</msg>
+<status status="PASS" starttime="20231010 11:17:42.067" endtime="20231010 11:17:42.068"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Verify_quantity}</var>
+<arg>${Verify_quantity_product_cart}</arg>
+<arg>ProductID=${product.id}</arg>
+<arg>quantity=${product.quantity}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:42.069" level="INFO">${Verify_quantity} = //*[@data-testid='btn-removeCart-decrementGRMKPPR000077948']/following-sibling::span[text()='1']</msg>
+<status status="PASS" starttime="20231010 11:17:42.068" endtime="20231010 11:17:42.069"/>
+</kw>
+<kw name="Format String" library="String">
+<var>${Verify_card_price}</var>
+<arg>${Verify_text_product_cart}</arg>
+<arg>ProductID=${product.id}</arg>
+<arg>text=${product.card_price}</arg>
+<doc>Formats a ``template`` using the given ``positional`` and ``named`` arguments.</doc>
+<msg timestamp="20231010 11:17:42.070" level="INFO">${Verify_card_price} = //*[@id='GRMKPPR000077948']//*[normalize-space(.)='฿2,390']</msg>
+<status status="PASS" starttime="20231010 11:17:42.069" endtime="20231010 11:17:42.070"/>
+</kw>
+<kw name="Scroll Element Into View Center" library="Common">
+<arg>${Verify_brand}</arg>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>window.document.evaluate("${locator}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20231010 11:17:42.070" level="INFO">Executing JavaScript:
+window.document.evaluate("//*[@id='GRMKPPR000077948']//*[normalize-space(.)='TOMMY HILFIGER']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});
+Without any arguments.</msg>
+<status status="PASS" starttime="20231010 11:17:42.070" endtime="20231010 11:17:42.075"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:43.077" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:42.075" endtime="20231010 11:17:43.078"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:42.070" endtime="20231010 11:17:43.078"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_brand}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:43.092" level="INFO">Element '//*[@id='GRMKPPR000077948']//*[normalize-space(.)='TOMMY HILFIGER']' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:43.078" endtime="20231010 11:17:43.092"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_describe}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:43.104" level="INFO">Element '//*[@id='GRMKPPR000077948']//*[normalize-space(.)='Women TJW WOVEN POOL SLIDE Black']' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:43.092" endtime="20231010 11:17:43.104"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_size}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:43.117" level="INFO">Element '//*[@id='GRMKPPR000077948']//*[contains(text(),'37 EU')]' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:43.104" endtime="20231010 11:17:43.117"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_quantity}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:43.130" level="INFO">Element '//*[@data-testid='btn-removeCart-decrementGRMKPPR000077948']/following-sibling::span[text()='1']' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:43.118" endtime="20231010 11:17:43.130"/>
+</kw>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_card_price}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:43.142" level="INFO">Element '//*[@id='GRMKPPR000077948']//*[normalize-space(.)='฿2,390']' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:43.131" endtime="20231010 11:17:43.142"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:42.066" endtime="20231010 11:17:43.143"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:42.063" endtime="20231010 11:17:43.143"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:42.063" endtime="20231010 11:17:43.143"/>
+</iter>
+<status status="PASS" starttime="20231010 11:17:40.992" endtime="20231010 11:17:43.143"/>
+</for>
+<kw name="Element Should Be Visible" library="SeleniumLibrary">
+<arg>${Verify_checkout_balance}</arg>
+<doc>Verifies that the element identified by ``locator`` is visible.</doc>
+<msg timestamp="20231010 11:17:43.172" level="INFO">Element '//*[@id='spcBagGrandTotal' and text()='11,290']' is displayed.</msg>
+<status status="PASS" starttime="20231010 11:17:43.143" endtime="20231010 11:17:43.173"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:40.989" endtime="20231010 11:17:43.173"/>
+</kw>
+<kw name="Checkout products in cart" library="Keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Checkout_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:43.174" level="INFO">Clicking element '//*[@data-testid='btn-saveCart-checkout']'.</msg>
+<status status="PASS" starttime="20231010 11:17:43.173" endtime="20231010 11:17:43.253"/>
+</kw>
+<kw name="Check Loading Done" library="Common">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:43.253" endtime="20231010 11:17:43.262"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_Dnone_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:43.263" endtime="20231010 11:17:43.481"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:44.482" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:43.482" endtime="20231010 11:17:44.482"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:43.253" endtime="20231010 11:17:44.483"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Click" library="Common">
+<arg>${Guess_Mode_btn}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:44.484" endtime="20231010 11:17:44.501"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:44.501" level="INFO">Clicking element '//*[contains(@class,'spc-log-in__button-message')]/..'.</msg>
+<status status="PASS" starttime="20231010 11:17:44.501" endtime="20231010 11:17:44.908"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:44.483" endtime="20231010 11:17:44.908"/>
+</kw>
+<kw name="Check Loading Done" library="Common">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:44.908" endtime="20231010 11:17:44.922"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_Dnone_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:44.922" endtime="20231010 11:17:46.821"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:47.824" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:46.821" endtime="20231010 11:17:47.824"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:44.908" endtime="20231010 11:17:47.824"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:43.173" endtime="20231010 11:17:47.824"/>
+</kw>
+<kw name="Add delivery address" library="Keywords">
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${New_Shipping_Address_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:47.828" level="INFO">Clicking element '//*[contains(@class,'address-data-not-available')]/..'.</msg>
+<status status="PASS" starttime="20231010 11:17:47.827" endtime="20231010 11:17:47.871"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Click" library="Common">
+<arg>${Add_Shipping_Address_btn}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:47.871" endtime="20231010 11:17:48.531"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:48.532" level="INFO">Clicking element '//*[@data-testid='lnk-ShippingAddress-AddNewAdr']'.</msg>
+<status status="PASS" starttime="20231010 11:17:48.532" endtime="20231010 11:17:48.577"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:47.871" endtime="20231010 11:17:48.577"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Fill Input Text" library="Common">
+<arg>${First_Name_inp}</arg>
+<arg>${addressData.firstName}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:48.579" endtime="20231010 11:17:49.237"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${text}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:49.238" level="INFO">Typing text 'test1' into text field '//*[@data-testid='txt-formShippingAddress-firstNameTxtbx']'.</msg>
+<status status="PASS" starttime="20231010 11:17:49.237" endtime="20231010 11:17:49.352"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:48.578" endtime="20231010 11:17:49.352"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Last_Name_inp}</arg>
+<arg>${addressData.lastName}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:49.353" level="INFO">Typing text 'test2' into text field '//*[@data-testid='txt-formShippingAddress-lastNameTxtbx']'.</msg>
+<status status="PASS" starttime="20231010 11:17:49.352" endtime="20231010 11:17:49.400"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Phone_inp}</arg>
+<arg>${addressData.phone}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:49.401" level="INFO">Typing text '0654637584' into text field '//*[@data-testid='txt-formShippingAddress-phoneNoTxtbx']'.</msg>
+<status status="PASS" starttime="20231010 11:17:49.400" endtime="20231010 11:17:49.448"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Email_inp}</arg>
+<arg>${addressData.email}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:49.450" level="INFO">Typing text 'test@gmail.com' into text field '//*[@data-testid='txt-formShippingAddress-emailTxtbx']'.</msg>
+<status status="PASS" starttime="20231010 11:17:49.448" endtime="20231010 11:17:49.500"/>
+</kw>
+<kw name="Scroll Element Into View Start" library="Common">
+<arg>${Address_inp}</arg>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>window.document.evaluate("${locator}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "start"});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20231010 11:17:49.501" level="INFO">Executing JavaScript:
+window.document.evaluate("//*[@data-testid='txt-formShippingAddress-addressTxtbx']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "start"});
+Without any arguments.</msg>
+<status status="PASS" starttime="20231010 11:17:49.501" endtime="20231010 11:17:49.505"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:50.506" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:49.505" endtime="20231010 11:17:50.506"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:49.500" endtime="20231010 11:17:50.506"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Address_inp}</arg>
+<arg>${addressData.address}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:50.507" level="INFO">Typing text 'address' into text field '//*[@data-testid='txt-formShippingAddress-addressTxtbx']'.</msg>
+<status status="PASS" starttime="20231010 11:17:50.506" endtime="20231010 11:17:50.555"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${PostCode_inp}</arg>
+<arg>${addressData.postCode}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:50.556" level="INFO">Typing text '10160' into text field '//*[@data-testid='txt-formShippingAddress-postcodeTxtbx']'.</msg>
+<status status="PASS" starttime="20231010 11:17:50.555" endtime="20231010 11:17:50.619"/>
+</kw>
+<kw name="Check Loading Done" library="Common">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:50.619" endtime="20231010 11:17:50.624"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_Dnone_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:50.625" endtime="20231010 11:17:51.056"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:52.058" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:51.056" endtime="20231010 11:17:52.059"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:50.619" endtime="20231010 11:17:52.059"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Select From List By Value" library="Common">
+<arg>${Province_sel}</arg>
+<arg>${addressData.province}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:52.060" endtime="20231010 11:17:52.102"/>
+</kw>
+<kw name="Select From List By Value" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${value}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20231010 11:17:52.102" level="INFO">Selecting options from selection list '//*[@class='province select-field data-yes']/preceding-sibling::select' by value bkk.</msg>
+<status status="PASS" starttime="20231010 11:17:52.102" endtime="20231010 11:17:52.132"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:52.059" endtime="20231010 11:17:52.132"/>
+</kw>
+<kw name="Select From List By Value" library="SeleniumLibrary">
+<arg>${District_sel}</arg>
+<arg>${addressData.district}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20231010 11:17:52.134" level="INFO">Selecting options from selection list '//*[@class='district select-field data-yes']/preceding-sibling::select' by value bkk_phasi_charoen.</msg>
+<status status="PASS" starttime="20231010 11:17:52.133" endtime="20231010 11:17:52.176"/>
+</kw>
+<kw name="Select From List By Value" library="SeleniumLibrary">
+<arg>${SubDistrict_sel}</arg>
+<arg>${addressData.subDistrict}</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20231010 11:17:52.177" level="INFO">Selecting options from selection list '//*[@class='subdistrict select-field data-yes']/preceding-sibling::select' by value phasi_charoen_pak_khlong_phasi_charoen.</msg>
+<status status="PASS" starttime="20231010 11:17:52.176" endtime="20231010 11:17:52.254"/>
+</kw>
+<kw name="Scroll Element Into View Start" library="Common">
+<arg>${Address_Label_inp}</arg>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>window.document.evaluate("${locator}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "start"});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20231010 11:17:52.256" level="INFO">Executing JavaScript:
+window.document.evaluate("//*[@data-testid='txt-formShippingAddress-addressLabelTxtbx']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "start"});
+Without any arguments.</msg>
+<status status="PASS" starttime="20231010 11:17:52.255" endtime="20231010 11:17:52.263"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:53.265" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:52.263" endtime="20231010 11:17:53.266"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:52.254" endtime="20231010 11:17:53.266"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Address_Label_inp}</arg>
+<arg>${addressData.label}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:53.268" level="INFO">Typing text 'Home' into text field '//*[@data-testid='txt-formShippingAddress-addressLabelTxtbx']'.</msg>
+<status status="PASS" starttime="20231010 11:17:53.267" endtime="20231010 11:17:53.318"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Submit_Shiping_Address_btn}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:53.319" level="INFO">Clicking element '//*[@data-testid='lnk-formShippingAddress-submitAddAddress']'.</msg>
+<status status="PASS" starttime="20231010 11:17:53.318" endtime="20231010 11:17:53.384"/>
+</kw>
+<kw name="Check Loading Done" library="Common">
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:53.385" endtime="20231010 11:17:53.390"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="SeleniumLibrary">
+<arg>${Page_Loader_Dnone_ele}</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20231010 11:17:53.390" endtime="20231010 11:17:55.786"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:17:56.789" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:55.786" endtime="20231010 11:17:56.790"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:53.385" endtime="20231010 11:17:56.791"/>
+</kw>
+<kw name="Wait Until Click Succeed" library="Common">
+<arg>${Use_This_Address_btn}</arg>
+<kw name="Wait Until Keyword Succeeds" library="BuiltIn">
+<arg>3x</arg>
+<arg>1s</arg>
+<arg>Wait Until Element Is Visble and Click</arg>
+<arg>${locator}</arg>
+<doc>Runs the specified keyword and retries if it fails.</doc>
+<kw name="Wait Until Element Is Visble and Click" library="Common">
+<arg>${locator}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:56.794" endtime="20231010 11:17:56.807"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:56.807" level="INFO">Clicking element '//*[@data-testid='btn-saveAddress-useThisAddress']'.</msg>
+<msg timestamp="20231010 11:17:58.111" level="INFO" html="true">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-1.png"&gt;&lt;img src="selenium-screenshot-1.png" width="800px"&gt;&lt;/a&gt;</msg>
+<msg timestamp="20231010 11:17:58.112" level="FAIL">ElementClickInterceptedException: Message: element click intercepted: Element &lt;a data-testid="btn-saveAddress-useThisAddress" href="javascript:void(0);" class="d-flex"&gt;...&lt;/a&gt; is not clickable at point (1540, 769). Other element would receive the click: &lt;div id="page-loader" class="pageLoader" ins-init-condition="#I3BhZ2UtbG9hZGVyLmQtbm9uZQ=="&gt;...&lt;/div&gt;
+  (Session info: chrome=115.0.5790.170)
+Stacktrace:
+0   chromedriver                        0x0000000104762a6c chromedriver + 4303468
+1   chromedriver                        0x000000010475b198 chromedriver + 4272536
+2   chromedriver                        0x000000010438f594 chromedriver + 292244
+3   chromedriver                        0x00000001043d31d0 chromedriver + 569808
+4   chromedriver                        0x00000001043d13bc chromedriver + 562108
+5   chromedriver                        0x00000001043cf0f8 chromedriver + 553208
+6   chromedriver                        0x00000001043ce1e4 chromedriver + 549348
+7   chromedriver                        0x00000001043c2958 chromedriver + 502104
+8   chromedriver                        0x00000001043c2220 chromedriver + 500256
+9   chromedriver                        0x0000000104405628 chromedriver + 775720
+10  chromedriver                        0x00000001043c0b40 chromedriver + 494400
+11  chromedriver                        0x00000001043c1988 chromedriver + 498056
+12  chromedriver                        0x0000000104723924 chromedriver + 4045092
+13  chromedriver                        0x0000000104727e68 chromedriver + 4062824
+14  chromedriver                        0x000000010472e088 chromedriver + 4087944
+15  chromedriver                        0x000000010472896c chromedriver + 4065644
+16  chromedriver                        0x0000000104700e64 chromedriver + 3903076
+17  chromedriver                        0x000000010474455c chromedriver + 4179292
+18  chromedriver                        0x00000001047446b4 chromedriver + 4179636
+19  chromedriver                        0x0000000104754978 chromedriver + 4245880
+20  libsystem_pthread.dylib             0x0000000188fdbfa8 _pthread_start + 148
+21  libsystem_pthread.dylib             0x0000000188fd6da0 thread_start + 8
+</msg>
+<status status="FAIL" starttime="20231010 11:17:56.807" endtime="20231010 11:17:58.119"/>
+</kw>
+<status status="FAIL" starttime="20231010 11:17:56.793" endtime="20231010 11:17:58.119"/>
+</kw>
+<kw name="Wait Until Element Is Visble and Click" library="Common">
+<arg>${locator}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:59.122" endtime="20231010 11:17:59.135"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:59.136" level="INFO">Clicking element '//*[@data-testid='btn-saveAddress-useThisAddress']'.</msg>
+<status status="PASS" starttime="20231010 11:17:59.135" endtime="20231010 11:17:59.206"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:59.121" endtime="20231010 11:17:59.206"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:56.792" endtime="20231010 11:17:59.206"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:56.792" endtime="20231010 11:17:59.206"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:47.825" endtime="20231010 11:17:59.206"/>
+</kw>
+<kw name="Select shipping method : home" library="Keywords">
+<kw name="Wait Until Element Is Visble and Click" library="Common">
+<arg>${Shipping_Method_1_1_rad}</arg>
+<kw name="Wait Until Element Is Visible" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" starttime="20231010 11:17:59.207" endtime="20231010 11:17:59.220"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:17:59.221" level="INFO">Clicking element '//*[@id='spc-shipment-method_1_1']'.</msg>
+<status status="PASS" starttime="20231010 11:17:59.220" endtime="20231010 11:17:59.260"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:59.207" endtime="20231010 11:17:59.260"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:59.206" endtime="20231010 11:17:59.260"/>
+</kw>
+<kw name="Add Credit Card" library="Keywords">
+<kw name="Scroll Element Into View Center" library="Common">
+<arg>${Credit_Payment_rad}</arg>
+<kw name="Execute Javascript" library="SeleniumLibrary">
+<arg>window.document.evaluate("${locator}", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});</arg>
+<doc>Executes the given JavaScript code with possible arguments.</doc>
+<msg timestamp="20231010 11:17:59.262" level="INFO">Executing JavaScript:
+window.document.evaluate("//*[@id='payment_service_fullpayment']", document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.scrollIntoView({behavior: "instant",block: "center"});
+Without any arguments.</msg>
+<status status="PASS" starttime="20231010 11:17:59.261" endtime="20231010 11:17:59.265"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>1s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20231010 11:18:00.267" level="INFO">Slept 1 second</msg>
+<status status="PASS" starttime="20231010 11:17:59.265" endtime="20231010 11:18:00.267"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:59.261" endtime="20231010 11:18:00.268"/>
+</kw>
+<kw name="Click Element" library="SeleniumLibrary">
+<arg>${Credit_Payment_rad}</arg>
+<doc>Click the element identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.269" level="INFO">Clicking element '//*[@id='payment_service_fullpayment']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.268" endtime="20231010 11:18:00.307"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Card_Fullname_inp}</arg>
+<arg>${creditCardData.fullName}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.308" level="INFO">Typing text 'test1 test2' into text field '//*[@id='cardName']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.308" endtime="20231010 11:18:00.355"/>
+</kw>
+<kw name="Input Special Text" library="Common">
+<arg>${Card_Number_inp}</arg>
+<arg>${creditCardData.cardNumber}</arg>
+<if>
+<branch type="IF" condition="${clear}==${True}">
+<kw name="Clear Element Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" starttime="20231010 11:18:00.356" endtime="20231010 11:18:00.375"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.356" endtime="20231010 11:18:00.376"/>
+</branch>
+<status status="PASS" starttime="20231010 11:18:00.356" endtime="20231010 11:18:00.376"/>
+</if>
+<kw name="Convert To List" library="Collections">
+<var>${listTest}</var>
+<arg>${text}</arg>
+<doc>Converts the given ``item`` to a Python ``list`` type.</doc>
+<msg timestamp="20231010 11:18:00.376" level="INFO">${listTest} = ['5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '5', '4', '4', '4', '4']</msg>
+<status status="PASS" starttime="20231010 11:18:00.376" endtime="20231010 11:18:00.376"/>
+</kw>
+<for flavor="IN">
+<var>${char}</var>
+<value>@{listTest}</value>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.376" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.376" endtime="20231010 11:18:00.404"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.376" endtime="20231010 11:18:00.404"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.408" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.405" endtime="20231010 11:18:00.428"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.405" endtime="20231010 11:18:00.428"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.428" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.428" endtime="20231010 11:18:00.448"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.428" endtime="20231010 11:18:00.449"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.449" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.449" endtime="20231010 11:18:00.466"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.449" endtime="20231010 11:18:00.467"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.467" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.467" endtime="20231010 11:18:00.484"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.467" endtime="20231010 11:18:00.484"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.485" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.485" endtime="20231010 11:18:00.516"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.484" endtime="20231010 11:18:00.516"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.517" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.516" endtime="20231010 11:18:00.534"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.516" endtime="20231010 11:18:00.534"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.535" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.534" endtime="20231010 11:18:00.552"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.534" endtime="20231010 11:18:00.552"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.553" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.552" endtime="20231010 11:18:00.570"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.552" endtime="20231010 11:18:00.570"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.571" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.570" endtime="20231010 11:18:00.587"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.570" endtime="20231010 11:18:00.587"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.589" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.588" endtime="20231010 11:18:00.606"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.588" endtime="20231010 11:18:00.606"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.607" level="INFO">Typing text '5' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.606" endtime="20231010 11:18:00.623"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.606" endtime="20231010 11:18:00.623"/>
+</iter>
+<iter>
+<var name="${char}">4</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.624" level="INFO">Typing text '4' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.623" endtime="20231010 11:18:00.640"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.623" endtime="20231010 11:18:00.641"/>
+</iter>
+<iter>
+<var name="${char}">4</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.641" level="INFO">Typing text '4' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.641" endtime="20231010 11:18:00.659"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.641" endtime="20231010 11:18:00.659"/>
+</iter>
+<iter>
+<var name="${char}">4</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.660" level="INFO">Typing text '4' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.659" endtime="20231010 11:18:00.676"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.659" endtime="20231010 11:18:00.676"/>
+</iter>
+<iter>
+<var name="${char}">4</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.677" level="INFO">Typing text '4' into text field '//*[@id='cardNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.676" endtime="20231010 11:18:00.694"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.676" endtime="20231010 11:18:00.694"/>
+</iter>
+<status status="PASS" starttime="20231010 11:18:00.376" endtime="20231010 11:18:00.694"/>
+</for>
+<status status="PASS" starttime="20231010 11:18:00.355" endtime="20231010 11:18:00.694"/>
+</kw>
+<kw name="Input Special Text" library="Common">
+<arg>${Card_Expire_inp}</arg>
+<arg>${creditCardData.expired}</arg>
+<if>
+<branch type="IF" condition="${clear}==${True}">
+<kw name="Clear Element Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<doc>Clears the value of the text-input-element identified by ``locator``.</doc>
+<status status="PASS" starttime="20231010 11:18:00.695" endtime="20231010 11:18:00.713"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.695" endtime="20231010 11:18:00.713"/>
+</branch>
+<status status="PASS" starttime="20231010 11:18:00.695" endtime="20231010 11:18:00.713"/>
+</if>
+<kw name="Convert To List" library="Collections">
+<var>${listTest}</var>
+<arg>${text}</arg>
+<doc>Converts the given ``item`` to a Python ``list`` type.</doc>
+<msg timestamp="20231010 11:18:00.713" level="INFO">${listTest} = ['1', '2', '2', '5']</msg>
+<status status="PASS" starttime="20231010 11:18:00.713" endtime="20231010 11:18:00.713"/>
+</kw>
+<for flavor="IN">
+<var>${char}</var>
+<value>@{listTest}</value>
+<iter>
+<var name="${char}">1</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.715" level="INFO">Typing text '1' into text field '//*[@id='expiryDate']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.714" endtime="20231010 11:18:00.741"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.714" endtime="20231010 11:18:00.741"/>
+</iter>
+<iter>
+<var name="${char}">2</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.741" level="INFO">Typing text '2' into text field '//*[@id='expiryDate']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.741" endtime="20231010 11:18:00.758"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.741" endtime="20231010 11:18:00.758"/>
+</iter>
+<iter>
+<var name="${char}">2</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.758" level="INFO">Typing text '2' into text field '//*[@id='expiryDate']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.758" endtime="20231010 11:18:00.776"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.758" endtime="20231010 11:18:00.776"/>
+</iter>
+<iter>
+<var name="${char}">5</var>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${locator}</arg>
+<arg>${char}</arg>
+<arg>${False}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.776" level="INFO">Typing text '5' into text field '//*[@id='expiryDate']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.776" endtime="20231010 11:18:00.795"/>
+</kw>
+<status status="PASS" starttime="20231010 11:18:00.776" endtime="20231010 11:18:00.795"/>
+</iter>
+<status status="PASS" starttime="20231010 11:18:00.713" endtime="20231010 11:18:00.795"/>
+</for>
+<status status="PASS" starttime="20231010 11:18:00.694" endtime="20231010 11:18:00.796"/>
+</kw>
+<kw name="Input Text" library="SeleniumLibrary">
+<arg>${Card_Cvv_inp}</arg>
+<arg>${creditCardData.cvv}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20231010 11:18:00.796" level="INFO">Typing text '555' into text field '//*[@id='cvvNumber']'.</msg>
+<status status="PASS" starttime="20231010 11:18:00.796" endtime="20231010 11:18:00.841"/>
+</kw>
+<status status="PASS" starttime="20231010 11:17:59.260" endtime="20231010 11:18:00.841"/>
+</kw>
+<doc>add 2 products in to the cart</doc>
+<status status="PASS" starttime="20231010 11:17:30.266" endtime="20231010 11:18:00.841"/>
+</test>
+<status status="PASS" starttime="20231010 11:17:26.395" endtime="20231010 11:18:00.842"/>
+</suite>
+<status status="PASS" starttime="20231010 11:17:26.394" endtime="20231010 11:18:00.842"/>
+</suite>
+<status status="PASS" starttime="20231010 11:17:26.393" endtime="20231010 11:18:00.843"/>
+</suite>
+<status status="PASS" starttime="20231010 11:17:26.392" endtime="20231010 11:18:00.843"/>
+</suite>
+<status status="PASS" starttime="20231010 11:17:26.390" endtime="20231010 11:18:00.844"/>
+</suite>
+<status status="PASS" starttime="20231010 11:17:26.378" endtime="20231010 11:18:00.844"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Training RobotFramework">Training RobotFramework</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1" name="SpecialExercise">Training RobotFramework.SpecialExercise</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1" name="Serie02">Training RobotFramework.SpecialExercise.Serie02</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1-s1" name="HW 6 refact">Training RobotFramework.SpecialExercise.Serie02.HW 6 refact</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1-s1-s1" name="Test Suits">Training RobotFramework.SpecialExercise.Serie02.HW 6 refact.Test Suits</stat>
+<stat pass="1" fail="0" skip="0" id="s1-s1-s1-s1-s1-s1" name="Poc Central">Training RobotFramework.SpecialExercise.Serie02.HW 6 refact.Test Suits.Poc Central</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

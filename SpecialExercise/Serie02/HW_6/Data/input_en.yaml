@@ -1,0 +1,53 @@
+TC-01_Shopping:
+  input_data:
+    input_products:
+      - brand:
+          name: COACH
+          logoBrand:  coach
+        products:
+          - id: MKP1570498
+            method: ''
+            size: ''
+            quantity: 1
+      - brand:
+          name: TOMMY HILFIGER
+          logoBrand:  tommy-hilfiger
+        products:
+          - id: MKP1573640
+            method: Select Size
+            size: 37 EU
+            quantity: 1
+    input_payment:
+      addressInfo:
+        firstName: test1
+        lastName: test2
+        phone:  0654637584
+        email:  test@gmail.com
+        address:  address
+        postCode: 10160
+        province: bkk
+        district: bkk_phasi_charoen
+        subDistrict: phasi_charoen_pak_khlong_phasi_charoen
+        label:  Home
+      CreditInfo:
+        fullName: test1 test2
+        cardNumber: '5555555555554444'
+        expired: '1225'
+        cvv:  555
+  expected_data:
+    products_in_cart:
+      products:
+        - id: MKP1570498
+          type: General
+          brand: COACH
+          describe: Kira Crossbody Black
+          quantity: 1
+          card_price: ฿9,900
+        - id: GRMKPPR000077948
+          type: with size
+          brand: TOMMY HILFIGER
+          describe: Women TJW WOVEN POOL SLIDE Black
+          size: 37 EU
+          quantity: 1
+          card_price: ฿2,390
+      checkout_balance: 12,290

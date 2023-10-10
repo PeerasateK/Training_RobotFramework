@@ -1,0 +1,13 @@
+input_yaml:
+  - brand: COACH
+    products:
+      - id: MKP115146
+        size:
+      # - id: CDS13774851
+      #   size:
+  - brand: TOMMY HILFIGER
+    products:
+      - id: MKP1487298
+        size: 2L\/XL
+      - id: MKP1561377
+        size: L
